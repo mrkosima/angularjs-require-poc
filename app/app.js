@@ -3,11 +3,15 @@
 define([
     'angular'
 ], function(angular) {
+    var moduleId = 0;
+
+    function getTemplate(id) {
+        return '<div id="moduleView' + id + '" ng-controller="TestController">Module ' + id + ': {{parentScopeValue}} and {{ownScopeValue}}</div>';
+    }
+
     return angular.module('myApp', [])
         .controller('AppController', function($scope, $compile, $log) {
-            var template = '<div id="moduleView" ng-controller="TestController">template: {{parentScopeValue}} and {{ownScopeValue}}</div>';
             var container = document.getElementById("moduleContainer");
-            container.innerHTML = template;
             $scope.parentScopeValue = '[parent scope value]';
             $scope.moduleLoaded = false;
             $scope.load = function() {
@@ -20,7 +24,11 @@ define([
                     });
             };
             $scope.inject = function() {
-                var element = angular.element(document.getElementById("moduleView"));
+                moduleId++;
+                console.log('start injector-' + moduleId);
+                var element = document.createElement('div');
+                element.innerHTML = getTemplate(moduleId);
+                container.appendChild(element);
                 var modules = ['test.module'];
                 modules.unshift([
                     '$provide', function($provide) {
@@ -35,6 +43,7 @@ define([
                         try {
                             $scope.$eval(function() {
                                 compile(element)($scope);
+                                console.log('complete injector-' + moduleId);
                             });
                         } catch (e) {
                             console.warn(e.message);
