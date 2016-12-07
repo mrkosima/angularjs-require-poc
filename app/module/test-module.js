@@ -6,7 +6,7 @@ define([
         .controller('TestController',
             function($scope) {
                 console.log('TestController created');
-                $scope.ownScopeValue = '[own scope value]';
+                $scope.ownScopeValue = '[own scope value:' + window.moduleId + ']';
             }
         );
     console.log('test-module started');
