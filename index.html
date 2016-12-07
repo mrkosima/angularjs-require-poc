@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>My AngularJS App</title>
+	<link rel="stylesheet" href="app/app.css">
+</head>
+<body ng-cloak>
+	<div ng-view>
+        <div ng-controller="AppController">
+            <p>controller here {{parentScopeValue}}</p>
+            <button ng-click="load()" ng-show="!moduleLoaded">Load module</button>
+            <button ng-click="inject()" ng-show="moduleLoaded">Inject module</button>
+            <div id="moduleContainer"></div>
+        </div>
+
+    </div>
+	<script data-main="require-config" src="node_modules/requirejs/require.js"></script>
+</body>
+</html>

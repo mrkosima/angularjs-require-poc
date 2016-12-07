@@ -1,0 +1,22 @@
+{
+  "name": "angular-requirejs-seed",
+  "private": true,
+  "version": "0.3.0",
+  "description": "AngularJS seed project modified for RequireJS support.",
+  "repository": "https://github.com/tnajdek/angular-requirejs-seed",
+  "license": "MIT",
+  "dependencies":{
+    "angular": "1.5.9",
+    "angular-route": "1.5.9",
+    "angular-loader": "1.5.9",
+    "requirejs-text": "2.0.12",
+    "requirejs": "2.3.2"
+  },
+  "devDependencies": {
+    "http-server": "^0.6.1",
+    "shelljs": "^0.2.6"
+  },
+  "scripts": {
+    "start": "http-server -a localhost -p 8000 -c-1 app"
+  }
+}
